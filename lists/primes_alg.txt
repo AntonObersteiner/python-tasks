@@ -1,0 +1,20 @@
+Die Primzahlen bis N (= up_to) bestimmen:
+Methode: "Sieb des Eratosthenes"
+
+Eine Zahl zwischen 1 und N ist dann Primzahl,
+    wenn sie nur durch 1 und sich selbst teilbar ist.
+
+Also nimmt man alle Zahlen von 2 bis N
+    und sortiert die Vielfachen aus:
+
+N = 10
+P = [2, 3, 4, 5, 6, 7, 8, 9, 10] #2 steht links => 2-Vielfache aussortieren
+P = [2, 3,    5,    7,    9    ] #3 kommt danach => 3-Vielfache weg
+P = [2, 3,    5,    7,         ] #fertig
+
+für 5 und 7 gibt es keine Vielfachen,
+    weil 2*5 und 3*5 und 4*5 schon weg sind, (2-/3-Vielfache)
+    erst 5*5 wäre immer noch drin.
+    5*5 = 25 >  N   #umformen
+          5  > √N
+=> Man muss nur die Vielfachen von Zahlen bis Wurzel(N) + 1 entfernen.

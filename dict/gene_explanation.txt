@@ -1,0 +1,38 @@
+Eine Freundin studiert Genetik und muss Daten verarbeiten. Sie erklärt:
+    Drei Zeichen aus der DNA ergeben immer eine Amino-Säure, z.B. erzeugt GCC die Säure Alanin.
+        Diese Aminosäuren formen sich dann von selbst zu Proteinen, die alles mögliche können.
+    Die Tabelle habe ich schon mal zusammenkopiert, die üblichen Abkürzungen sind auch schon fertig.
+        -> gene_data.py
+
+Anmerkung:
+    Für manche Aufgaben ist es sinnvoll, andere Datenstrukturen als nur die schon erstellten
+        amino -> dna   und   amino -> Abkürzung  zu verwenden.
+        Wandelt automatisiert um, nicht von Hand.
+
+Ideen für Funktion des Programms:
+    Man kann eine Datei mit DNA angeben (z.B. HEXA.dna). Erstmal steht der Dateiname fest im Code,
+        ihr könnt das mit Eingabe machen, wenn ihr möchtet.
+
+    Mögliche Features:
+        Amino-Säuren-Abkürzungen ausgeben, die aus dieser DNA entstehen würden.
+            Bsp: AUGGCCCAGGCT -> MetAlaGlnAla
+            -> Funktion translate(dna)
+
+        für einen kurzen (potentiell leicht veränderten) DNA-Strang
+            den Ursprung in der langen DNA finden.
+            selbes Bsp: CCTAG ist von Index 4, mit einer Mutation bei Index 6
+            eventuell gibt es mehrere gute matches -> wie sortieren?
+            -> Funktion match(dna) -> gibt Index
+                und Liste von Mutationsindizes (bezogen auf langen Strang)
+
+        DNA ist kommafrei: man kann nicht erkennen, ob die dreier-Gruppen bei 0, 1, oder 2 anfangen.
+            AUG|GCC|CAG|GCT  !=  (A)UGG|CCC|AGG(CT)  !=  (AU)GGC|CCA|GGC(T)
+            Ist der Inhalt von HEXA.dna verrutscht?
+                Die bei Wirbeltieren übliche Verteilung der Aminosäuren steht in gene_distr.txt
+
+        Unsere Biologie-Freundin möchte einige drei-Zeichen-Kombinationen
+            für ganz eigene Anwendungen nutzen.
+            Z.B. eine eigene "Amino-Säure" mit einem Eisen-Atom für Magnetismus.
+            selbes Bsp: GCT soll jetzt anders verwendet werden. Bisher erzeugt GCT -> Alanin
+                Aber das bisherige Protein soll erhalten bleiben.
+                MetAlaGlnAla muss immer noch rauskommen.

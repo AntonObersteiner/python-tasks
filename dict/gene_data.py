@@ -1,0 +1,51 @@
+amino_to_dna = {
+    "alanine": ["GCT", "GCC", "GCA", "GCG"],
+    "arginine": ["CGT", "CGC", "CGA", "CGG", "AGA", "AGG"],
+    "asparagine": ["AAT", "AAC"],
+    "aspartic acid": ["GAT", "GAC"],
+    "cysteine": ["TGT", "TGC"],
+    "glutamic acid": ["GAA", "GAG"],
+    "glutamine": ["CAA", "CAG"],
+    "glycine": ["GGT", "GGC", "GGA", "GGG"],
+    "histidine": ["CAT", "CAC"],
+    "isoleucine": ["ATT", "ATC", "ATA"],
+    "leucine": ["TTA", "TTG", "CTT", "CTC", "CTA", "CTG"],
+    "lysine": ["AAA", "AAG"],
+    "methionine": ["ATG"],
+    "phenylalanine": ["TTT", "TTC"],
+    "proline": ["CCT", "CCC", "CCA", "CCG"],
+    "serine": ["TCT", "TCC", "TCA", "TCG", "AGT", "AGC"],
+    "stop": ["TAA", "TAG", "TGA"],
+    "threonine": ["ACT", "ACC", "ACA", "ACG"],
+    "tryptophan": ["TGG"],
+    "tyrosine": ["TAT", "TAC"],
+    "valine": ["GTT", "GTC", "GTA", "GTG"],
+}
+abbrev = {
+    "alanine": "Ala",
+    "arginine": "Arg",
+    "asparagine": "Asp",
+    "aspartic acid": "Asn",
+    "cysteine": "Cys",
+    "glutamic acid": "Glu",
+    "glutamine": "Gln",
+    "glycine": "Gly",
+    "histidine": "His",
+    "isoleucine": "Ile",
+    "leucine": "Leu",
+    "lysine": "Lys",
+    "methionine": "Met",
+    "phenylalanine": "Phe",
+    "proline": "Pro",
+    "serine": "Ser",
+    "stop": "X--",
+    "threonine": "Thr",
+    "tryptophan": "Trp",
+    "tyrosine": "Tyr",
+    "valine": "Val",
+}
+
+"""
+Möglicherweise wollt ihr die vorgegebenen Datenstrukturen zu eigenen umwandeln
+Z.B. wäre eine, die "GCT" -> "alanine" und "GTT" -> "valine" enthält, sinnvoll
+"""
