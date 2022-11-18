@@ -11,7 +11,7 @@ class Car:
     def __init__(self):
         self.T = turtle.clone()
         self.speed = 1
-        self.pos = Vector()
+        self.pos = Vector(0, 0)
         self.angle = 0
         self.show_turtle = turtle.Turtle()
         self.show_turtle.pu()
@@ -42,6 +42,7 @@ class Car:
 
 def main():
     C = Car()
+    print("Press 'a' to turn left, 'd' to turn right, '0' to reset and 'Q' to quit")
 
     turtle.onkeypress(C.left, "a")
     turtle.onkeypress(C.right, "d")

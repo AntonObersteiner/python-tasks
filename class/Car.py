@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Hier soll eine Klasse entstehen, die ein "Auto" implementiert
+Am Besten mal https://docs.python.org/3/library/turtle.html überfliegen
 """
 
 import turtle
