@@ -3,7 +3,7 @@
 def sort(List):
     """
     This is called bubble sort
-    It's not that fast in general – but simple to understand
+    It's not that fast in general – but easier to understand
     Better sort algorithms are discussed in many later lectures
     """
     #tells us if we know that the list is currently sorted

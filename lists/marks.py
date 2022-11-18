@@ -1,7 +1,9 @@
 # In der zweidimensionalen Liste 'marks' stehen fiktive Klausurergebnisse.
 # Wundert euch nicht, Vornamen kommen teilweise mehr als einmal vor.
+# Erklärung zu zweidimensionalen Listen: siehe unten, ca. Zeile 20
+# unten ist Platz für eure Lösung
 #
-# 1a) benutzt eine for-Schleife um alle Schüler zu printen die
+# 1a) benutzt for-Schleifen um alle Schüler zu printen die
 #       - durchgefallen sind (schlechter als 4.0).
 #       - 1.0 haben.
 # 1b) gebt Anna eine 1.0 und überprüft das mit 1a.
@@ -13,10 +15,13 @@
 # Hinweise:
 #   - liste.append(x) fügt x an liste an
 #   - len(liste) gibt die Länge einer Liste zurück
-#   - liste[0] gibt das Element an Stelle 0 zurück
-#   - liste[1] = 3.0 setzt das Element an Stelle 1 auf 3.0
+#   - liste[0] gibt das Element an Stelle 0 zurück (erstes)
+#   - liste[1] = 3.0 setzt das Element an Stelle 1 auf 3.0 (zweites Element)
 #
-#   - personen = [["Sophia", 3.5], ["Milo", 2.9]] ist eine zweimensionale Liste.
+# zweidimensionale Listen
+#   - 1-d Liste: names = ["Sophia", "Milo", ...], Zugriff via names[1]
+#   - 2-d Liste: marks ist eine Liste von Listen, daher eine zweidimensionale Liste
+#   - marks = [["Sophia", 3.5], ["Milo", 2.9]]
 #     personen[1] gibt ["Milo", 2.9] zurück
 #     und personen[1][0] gibt "Milo" zurück
       

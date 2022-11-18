@@ -34,7 +34,8 @@ exit(0)
 
 """
 Hier wird von mir geprüft, ob die Funktion tut, was sie soll
-Wenn die Datei check.py nicht im aktuellen Ordner liegt, müsst ihr das hier löschen
+Wenn die Datei check.py nicht im aktuellen Ordner liegt, funktioniert das nicht, 
+testet euren Code dann bitte selbst.
 """
 from check import check
 def test():

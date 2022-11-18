@@ -3,8 +3,8 @@
 """
 In dieser Aufgabe werden die Primzahlen bis zu einer Zahl bestimmt.
 Dafür wird die Funktion primes(up_to) definiert, die eine Liste zurückgibt.
-Der Algorithmus wird in primes_alg.txt erklärt,
-    wer selber knobeln will, kann das machen.
+Ein effizienter Algorithmus wird in primes_alg.txt erklärt,
+    wer selber knobeln will, macht das :)
 """
 
 #man kann die vorher gelöste Aufgabe hier wiederverwenden

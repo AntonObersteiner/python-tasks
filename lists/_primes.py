@@ -33,6 +33,8 @@ def primes_efficient(up_to = 1000):
 
     return result
 
+
+# der folgende Code ist nicht so einfach
 def not_multiple(n):
     return lambda p: p % n or p == n
 
