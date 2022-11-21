@@ -35,7 +35,7 @@ class Car:
 
     def right(self, da = 5):
         self.angle -= da / 360 * 2*pi
-        self.T.right(5)
+        self.T.right(da)
 
     def sync(self):
         self.angle = self.T.heading() / 360 * 2*pi
