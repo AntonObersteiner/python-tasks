@@ -24,7 +24,7 @@ class Vector:
         return (
             isinstance(other, Vector) and
             self.x == other.x and
-            other.x == other.y
+            self.y == other.y
         )
 
     #self + other
