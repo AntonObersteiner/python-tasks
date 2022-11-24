@@ -1,10 +1,22 @@
 """
 Hier soll eine Klasse entstehen, die einen Menschen repräsentiert
 Der hat erstmal einen Vor- und einen Nachnamen
+Aufgabe:
+    speichert auch den Nachnamen
+    Ergänzt vorstellen so, dass der Mensch seinen Namen nennt
+Freie Aufgaben:
+    fügt weitere Attribute hinzu (Alter, Eltern/Kinder, ...)
+    erstellt eine Klasse 'Bar' mit einer Methode 'einlass',
+        sodass man eine Bar erstellen und dann die Bar fragen kann, 
+        ob sie einen bestimmten Menschen einlässt
+        (entweder am Alter oder am sechsten Bustaben des Nachnamen)
 
 z.B.:
 maria = Mensch("Maria", "Stockhammer")
 klaus = Mensch("Klaus", "Estak")
+
+foo_bar = Bar()
+foo_bar.einlass(maria) #-> True/False oder ein Text oder nur print
 """
 
 class Mensch:
