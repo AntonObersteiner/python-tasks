@@ -2,24 +2,42 @@
 from random import random
 import turtle
 
-height = 100
-width = 200
+## basics of the simulation
+#used in the algorithm to determine what particle sticks
 threshold = 2
 particle_number = 1000
-dot_size = 10
-lines_to_parent = True
+
+#what window of the background around the current position to check
 DI = 2
 DJ = 2
+
+## details of the simulation
+fall_speed = 3
+#how many falling particles to randomly move somewhere else
 reposition_probability = 5 #of the particles
+#how many inital non-moving particles to place
 seeds = 5
+
+## visualization
+color_mode = "inherit" #allowed values: "inherit", "time"
+#how many generations ("inherit") / iterations ("time")
+#until once around the color wheel
+color_wrap_at = 20
+
+#frame of coordinates in which to draw
+height = 100
+width = 200
+#how much to stretch the coordinates to get pixel positions to draw
 draw_scale_x = 5
 draw_scale_y = 4
+#how large to draw the particles
+dot_size = 10
+#whether the turtle redraws so falling can be shown or whether it 
+#just shows the newly appearing particles
 redraw_mode = True
+
+#global variables that change
 time = 0 #counts iterations in main
-color_mode = "inherit" #other values: "time"
-color_inheritance_max = 20
-color_epoch = 50 #how many iterations are once around the color wheel
-fall_speed = 3
 
 def wrap(x, y):
     while y < 0:        y += height
@@ -102,9 +120,10 @@ class Particle:
 
     def update_color(self):
         if color_mode == "time":
-            self.color = hsv((time % color_epoch) / color_epoch)
+            color_factor = time #what determines the color of the particle
         else:
-            self.color = hsv((self.level % color_inheritance_max) / color_inheritance_max)
+            color_factor = self.level
+        self.color = hsv((color_factor % color_wrap_at) / color_wrap_at)
             
     def check(self, background):
         i, j = self.indices()
@@ -134,13 +153,8 @@ class Particle:
 
     def draw(self):
         turtle.color(self.color)
-        if lines_to_parent and self.parent:
-            goto(self.parent.x, self.parent.y)
-            turtle.pendown()
         goto(self.x, self.y)
         turtle.dot(dot_size)
-        if lines_to_parent and self.parent:
-            turtle.penup()
 
 def goto(x, y):
     turtle.goto(
