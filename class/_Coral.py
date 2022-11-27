@@ -15,9 +15,6 @@ reposition_probability = 5 #of the particles
 seeds = 5
 
 ## visualization
-#how many generations until once around the color wheel
-color_wrap_at = 20
-
 #frame of coordinates in which to draw
 height = 100
 width = 200
@@ -29,6 +26,9 @@ dot_size = 10
 #whether the turtle redraws so falling can be shown or whether it 
 #just shows the newly appearing particles
 redraw_mode = True
+#how many generations until once around the color wheel
+color_wrap_at = 20
+
 
 def wrap(x, y):
     while y < 0:        y += height
