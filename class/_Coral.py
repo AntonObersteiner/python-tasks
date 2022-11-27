@@ -7,10 +7,6 @@ import turtle
 threshold = 2
 particle_number = 1000
 
-#what window of the background around the current position to check
-DI = 2
-DJ = 2
-
 ## details of the simulation
 fall_speed = 3
 #how many falling particles to randomly move somewhere else
@@ -119,8 +115,8 @@ class Particle:
     def check(self, background):
         i, j = self.indices()
         own_cell = background[i][j]
-        for di in range(- DI, DI + 1):
-            for dj in range(- DJ, DJ + 1):
+        for di in range(- 2, 3):
+            for dj in range(- 2, 3):
                 I, J = wrap(i + di, j + dj)
                 cell = background[I][J]
                 for fixed in cell:
