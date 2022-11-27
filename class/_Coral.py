@@ -99,7 +99,6 @@ class Particle:
         self.level = self.parent.level + 1
         self.update_color_and_size()
 
-            
     def check(self, background):
         own_i, own_j = self.indices()
         own_cell = background[own_i][own_j]
@@ -118,14 +117,6 @@ class Particle:
                         return True
         return False
 
-    def entry(self, background):
-        if not self.fix:
-            return
-        i, j = self.indices()
-        cell = background[i][j]
-        if self not in cell:
-            cell.append(self)
-
     def draw(self):
         turtle.color(self.color)
         goto(self.x, self.y)
@@ -138,15 +129,6 @@ def goto(x, y):
         (y - height / 2) * draw_scale_y
     )
 
-def make_background(fixed_particles):
-    result = [
-        [[] for _ in range(height)]
-        for _ in range(width)
-    ]
-    for fix in fixed_particles:
-        fix.entry(result)
-    return result
-
 def setup():
     turtle.hideturtle()
     turtle.penup()
@@ -154,6 +136,10 @@ def setup():
 
 def main():
     setup()
+    background = [
+        [[] for _ in range(height)]
+        for _ in range(width)
+    ]
     free = [Particle() for _ in range(particle_number)]
     fix = []
     for s in range(seeds):
@@ -162,8 +148,9 @@ def main():
         fixed.y = 10
         fixed.draw()
         fix.append(fixed)
+        i, j = fixed.indices()
+        background[i][j].append(fixed)
 
-    background = make_background(fix)
     while True:
         for p in range(len(free)-1, -1, -1):
             if random() <= reposition_probability / particle_number:
