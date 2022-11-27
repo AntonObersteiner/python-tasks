@@ -60,22 +60,6 @@ def hsv(hue, sat = 1.0, brightness = 1.0):
 
     return r, g, b
 
-def hsv_test():
-    turtle.tracer(0, 0)
-    turtle.pu()
-    for x in range(0, 500, 20):
-        for y in range(0, 600, 20):
-            hue = x / 500
-            sat = y / 600
-            brightness = y / 600
-            turtle.goto(x, y - 300)
-            turtle.color(hsv(hue, sat, 1.0))
-            turtle.dot(30)
-            turtle.goto(-x, y - 300)
-            turtle.color(hsv(hue, 1.0, brightness))
-            turtle.dot(30)
-    turtle.update()
-
 class Particle:
     def __init__(self, 
         x = None, 
