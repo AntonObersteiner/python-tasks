@@ -26,31 +26,36 @@ color_wrap_at = 20
 
 
 def wrap(x, y):
-    while y < 0:        y += height
-    while y >= height:  y -= height
-    while x < 0:        x += width
-    while x >= width:   x -= width
-    return x, y
+    "wraps around x and y so that 0 <= x < width and 0 <= y < height"
+    return x % width, y % height
 
 def dist(x1, y1, x2, y2):
+    "returns the euclidian distance √(Δx² + Δy²) from (x₁, y₁) to (x₂, y₂)"
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** .5
 
 def hsv(hue, sat = 1.0, brightness = 1.0):
-    "returns some rgb values that behave roughly as expected"
+    """returns rgb values so that
+        hue wraps goes around the colorwheel,
+        sat describes the saturation (aka non-averaging) and 
+        brightness is roughly the magnitude.
+    actually, this implements just triangle interpolation"""
+
     r, g, b = 0, 0, 0
-    h1, h2, h3 = 1.0/3, 2.0/3, 1.0
-    if   hue < h1: r = (h1 - hue) * 3
-    elif hue > h2: r = (hue - h2) * 3
-    if   hue < h1: g = (hue) * 3
-    elif hue < h2: g = (h2 - hue) * 3
-    if   hue > h2: b = (h3 - hue) * 3
-    elif hue > h1: b = (hue - h1) * 3
+    h = hue * 3
+    if   h < 1.0: r = 1.0 - h
+    elif h > 2.0: r = h - 2.0
+    if   h < 1.0: g = h
+    elif h < 2.0: g = 2.0 - h
+    if   h > 2.0: b = 3.0 - h
+    elif h > 1.0: b = h - 1.0
     
+    #interpolate each value with the average
     avg = (r + g + b) / 3
     r = r + (1 - sat) * (avg - r)
     g = g + (1 - sat) * (avg - g)
     b = b + (1 - sat) * (avg - b)
 
+    #scale each value with the brightness
     r *= brightness
     g *= brightness
     b *= brightness
