@@ -21,11 +21,6 @@ width = 200
 #how much to stretch the coordinates to get pixel positions to draw
 draw_scale_x = 5
 draw_scale_y = 4
-#how large to draw the particles
-dot_size = 10
-#whether the turtle redraws so falling can be shown or whether it 
-#just shows the newly appearing particles
-redraw_mode = True
 #how many generations until once around the color wheel
 color_wrap_at = 20
 
@@ -92,7 +87,8 @@ class Particle:
         self.y = rand() * height if y is None else y
         self.fix = fix
         self.parent = parent
-        self.color = (.1, .7, .3) #green-ish
+        self.color = (.8, .8, .90) #bluish-ish white
+        self.dot_size = 1
         self.level = 0 #when fixed, inherit the parent's plus one
 
     def __repr__(self):
@@ -109,8 +105,9 @@ class Particle:
         j = int(y)
         return i, j
 
-    def update_color(self):
+    def update_color_and_size(self):
         self.color = hsv((self.level % color_wrap_at) / color_wrap_at)
+        self.dot_size = 10
             
     def check(self, background):
         i, j = self.indices()
@@ -124,7 +121,7 @@ class Particle:
                     if d < threshold:
                         self.parent = fixed #might not be the minimial neighbor
                         self.level = self.parent.level + 1
-                        self.update_color()
+                        self.update_color_and_size()
                         own_cell.append(self)
                         self.fix = True
                         return True
@@ -141,7 +138,8 @@ class Particle:
     def draw(self):
         turtle.color(self.color)
         goto(self.x, self.y)
-        turtle.dot(dot_size)
+        turtle.dot(self.dot_size)
+
 
 def goto(x, y):
     turtle.goto(
@@ -161,12 +159,7 @@ def make_background(fixed_particles):
 def setup():
     turtle.hideturtle()
     turtle.penup()
-    if redraw_mode:
-        turtle.tracer(0, 0)
-
-def draw(particles):
-    for particle in particles:
-        particle.draw()
+    turtle.tracer(0, 0)
 
 def main():
     setup()
@@ -175,7 +168,9 @@ def main():
         Particle((s + .5) / seeds * width, 10, True)
         for s in range(seeds)
     ]
-    draw(fix)
+    for fixed in fix:
+        fixed.draw()
+
     background = make_background(fix)
     while True:
         for p in range(len(free)-1, -1, -1):
@@ -188,13 +183,9 @@ def main():
                 free.pop(p)
                 fix.append(particle)
                 particle.draw()
-        if redraw_mode:
-            turtle.clear()
-            turtle.color(.2, .8, .2)
-            draw(free)
-            turtle.color(0, .2, 1)
-            draw(fix)
-            turtle.update()
+            else:
+                particle.draw()
+        turtle.update()
 
         if len(free) == 0:
             break
