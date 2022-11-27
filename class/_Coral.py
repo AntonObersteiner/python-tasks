@@ -19,9 +19,7 @@ reposition_probability = 5 #of the particles
 seeds = 5
 
 ## visualization
-color_mode = "inherit" #allowed values: "inherit", "time"
-#how many generations ("inherit") / iterations ("time")
-#until once around the color wheel
+#how many generations until once around the color wheel
 color_wrap_at = 20
 
 #frame of coordinates in which to draw
@@ -35,9 +33,6 @@ dot_size = 10
 #whether the turtle redraws so falling can be shown or whether it 
 #just shows the newly appearing particles
 redraw_mode = True
-
-#global variables that change
-time = 0 #counts iterations in main
 
 def wrap(x, y):
     while y < 0:        y += height
@@ -119,11 +114,7 @@ class Particle:
         return i, j
 
     def update_color(self):
-        if color_mode == "time":
-            color_factor = time #what determines the color of the particle
-        else:
-            color_factor = self.level
-        self.color = hsv((color_factor % color_wrap_at) / color_wrap_at)
+        self.color = hsv((self.level % color_wrap_at) / color_wrap_at)
             
     def check(self, background):
         i, j = self.indices()
@@ -182,7 +173,6 @@ def draw(particles):
         particle.draw()
 
 def main():
-    global time
     setup()
     free = [Particle() for _ in range(particle_number)]
     fix = [
@@ -210,7 +200,6 @@ def main():
             draw(fix)
             turtle.update()
 
-        time += 1
         if len(free) == 0:
             break
     input("[ENTER] to quit.")
