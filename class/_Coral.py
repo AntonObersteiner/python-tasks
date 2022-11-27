@@ -92,20 +92,27 @@ class Particle:
     def update_color_and_size(self):
         self.color = hsv((self.level % color_wrap_at) / color_wrap_at)
         self.dot_size = 10
+
+    def bind(self, parent):
+        "binds to a parent, inherits their level (+ 1), updates color and size"
+        self.parent = parent
+        self.level = self.parent.level + 1
+        self.update_color_and_size()
+
             
     def check(self, background):
-        i, j = self.indices()
-        own_cell = background[i][j]
-        for di in range(- 2, 3):
-            for dj in range(- 2, 3):
-                I, J = wrap(i + di, j + dj)
-                cell = background[I][J]
-                for fixed in cell:
+        own_i, own_j = self.indices()
+        own_cell = background[own_i][own_j]
+
+        for i in range(own_i - 2, own_i + 3):
+            for j in range(own_j - 2, own_j + 3):
+                i, j = wrap(i, j)
+                for fixed in background[i][j]:
                     d = dist(fixed.x, fixed.y, self.x, self.y)
                     if d < threshold:
-                        self.parent = fixed #might not be the minimial neighbor
-                        self.level = self.parent.level + 1
-                        self.update_color_and_size()
+                        #note that we bind to the first close fixed particle,
+                        #not nessecarily the closest fixed particle
+                        self.bind(fixed)
                         own_cell.append(self)
                         self.fix = True
                         return True
