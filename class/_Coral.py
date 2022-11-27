@@ -35,9 +35,6 @@ def wrap(x, y):
 def dist(x1, y1, x2, y2):
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** .5
 
-def rand(lower = -.5, upper = .5):
-    return random() * (upper - lower) + lower
-
 def hsv(hue, sat = 1.0, brightness = 1.0):
     "returns some rgb values that behave roughly as expected"
     r, g, b = 0, 0, 0
@@ -61,19 +58,17 @@ def hsv(hue, sat = 1.0, brightness = 1.0):
     return r, g, b
 
 class Particle:
-    def __init__(self, 
-        x = None, 
-        y = None, 
-        fix = False,
-        parent = None
-    ):
-        self.x = rand() * width  if x is None else x
-        self.y = rand() * height if y is None else y
+    def __init__(self, fix = False):
+        self.x = random() * width
+        self.y = random() * height
         self.fix = fix
-        self.parent = parent
+        self.parent = None
         self.color = (.8, .8, .90) #bluish-ish white
         self.dot_size = 1
         self.level = 0 #when fixed, inherit the parent's plus one
+        if self.fix:
+            #seeds should get their color set according to their level
+            self.update_color_and_size()
 
     def __repr__(self):
         return f"({round(self.x)}, {round(self.y)}{', fix' if self.fix else ''})"
@@ -127,7 +122,7 @@ class Particle:
 
 def goto(x, y):
     turtle.goto(
-        (x - width / 2) * draw_scale_x, 
+        (x - width / 2) * draw_scale_x,
         (y - height / 2) * draw_scale_y
     )
 
@@ -148,12 +143,13 @@ def setup():
 def main():
     setup()
     free = [Particle() for _ in range(particle_number)]
-    fix = [
-        Particle((s + .5) / seeds * width, 10, True)
-        for s in range(seeds)
-    ]
-    for fixed in fix:
+    fix = []
+    for s in range(seeds):
+        fixed = Particle(fix = True)
+        fixed.x = (s + .5) / seeds * width
+        fixed.y = 10
         fixed.draw()
+        fix.append(fixed)
 
     background = make_background(fix)
     while True:
