@@ -36,7 +36,7 @@ def dist(x1, y1, x2, y2):
 def hsv(hue, sat = 1.0, brightness = 1.0):
     """returns rgb values so that
         hue wraps goes around the colorwheel,
-        sat describes the saturation (aka non-averaging) and 
+        sat describes the saturation (aka non-averaging) and
         brightness is roughly the magnitude.
     actually, this implements just triangle interpolation"""
 
@@ -48,7 +48,7 @@ def hsv(hue, sat = 1.0, brightness = 1.0):
     elif h < 2.0: g = 2.0 - h
     if   h > 2.0: b = 3.0 - h
     elif h > 1.0: b = h - 1.0
-    
+
     #interpolate each value with the average
     avg = (r + g + b) / 3
     r = r + (1 - sat) * (avg - r)
