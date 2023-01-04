@@ -1,37 +1,48 @@
+"""
+your job: you get measurements from a function called measure
+	what measurements? it tells you. print(help(measure))
+don't call measure yourself, it's a bit special and should be called in a for loop
+	see line 22
+use the data in the for-loop-variable measurement to track the position.
+	eventually, it tells you it's not moving any more and you can check your estimation
+you will be off a bit, because a sensor is broken
+	but you can recalibrate and should be spot-on afterwards
+"""
+
 from device import measure
 from Turtle import setup, home, goto, draw_dot, turtle
 from math import cos, sin
 
 def main(draw = True):
-    setup()
-    angle = 0
-    pos = [0, 0]
-    for measurement in measure():
-        if measurement["moving"]:
-            angle += measurement["angle_change"]
-            step = measurement["step"]
-            pos[0] = pos[0] + cos(angle) * step
-            pos[1] = pos[1] + sin(angle) * step
-            if draw:
-                goto(pos)
-                turtle.update()
-        else:
-            final_pos = [
-                measurement["final_x"],
-                measurement["final_y"]
-            ]
-            final_angle = measurement["final_angle"]
-            print(f"pos: own {pos}, sent {final_pos}, ", 
-                end="\t")
-            print(f"ang: own {angle}, sent {final_angle}")
-            pos = [0, 0]
-            angle = 0
-            if draw:
-                draw_dot(final_pos)
-                home()
-                turtle.update()
-                #input("press [ENTER] to continue")
-                #turtle.clear()
+	setup() #makes turtle work better
+
+	#initialize your variables
+
+
+	for measurement in measure():
+		if measurement["moving"]:
+			#update your knowledge
+
+
+			if draw:
+				goto(position)
+				turtle.update()
+		else:
+			#if measurement["moving"] == False, it tells you the final position,
+			#now check against your solution, maybe use to calibrate...
+
+			#best: give some debug info
+
+			#reset your variables (the new 'measurement run' starts
+			# at (0, 0), angle 0)
+
+
+			if draw:
+				draw_dot(final_pos)
+				home()
+				turtle.update()
+				#input("press [ENTER] to continue")
+				#turtle.clear()
 
 if __name__ == "__main__":
-    main()
+	main()
